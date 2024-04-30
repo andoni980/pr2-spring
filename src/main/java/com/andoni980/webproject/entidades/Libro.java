@@ -42,8 +42,8 @@ public class Libro {
 	private String titulo;
 	
 	@Lob
-	@NotNull(message = "No puede estar vacío")
-	@Size(min=3,max=3000)
+	@NotNull
+	@Size(min=0,max=3000)
 	@Column(name = "descripcion")
 	@Builder.Default
 	private String descripcion = "NO CONTIENE UNA DESCRIPCIÓN";

@@ -93,5 +93,15 @@ public class IndexController {
 		modelo.addAttribute("autores", usuarioService.getAllAutores());
 		return "autores";
 	}
+	
+	@GetMapping("login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("logout")
+	public String logout() {
+		return "logout";
+	}
 
 }

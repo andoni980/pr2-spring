@@ -46,7 +46,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a th:href="@{/admin}" href="admin" class="btn btn-sm btn-primary">Añadir</a></td>
+						<td><a th:href="@{/admin} + '#libro'" href="admin" class="btn btn-sm btn-primary">Añadir</a></td>
 					</tr>
 				</tfoot>
 			</table>
@@ -76,12 +76,14 @@
 					<span th:errors="*{descripcion}"></span>
 				</div>
 			</div>
-			<div class="row mb-3">
+			<div class="mb-3 row">
 				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 				<div class="col-sm">
-					<input type="number" step="0.01" class="form-control" th:field="*{precio}"><span
-						class="input-group-text">€</span>
-					<span th:errors="*{precio}"></span>
+					<div class="input-group">
+						<input type="number" step="0.01" class="form-control" th:field="*{precio}"><span
+							class="input-group-text">€</span>
+						<span th:errors="*{precio}"></span>
+					</div>
 				</div>
 			</div>
 			<div class="row mb-3">
