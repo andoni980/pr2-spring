@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>Detalle de Libro</title>
+
+<main>
+
+	<p th:text="'Titulo: ' + ${libro.titulo}">Titulo</p>
+	<p th:text="'Precio: ' + ${libro.precio}">Precio</p>
+	<p th:text="'Autor: ' + ${libro.autor.nombre}">Autor</p>
+	<p th:text="'ISBN: ' + ${libro.isbn}">ISbN</p>
+
+</main>
+
+</html>

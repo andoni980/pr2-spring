@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,8 +46,9 @@ public class Libro {
 	@NotNull(message = "No puede estar vacío")
 	@NotBlank(message = "No puede estar vacío")
 	@Size(min=3,max=3000,message="Demasiado corto o demasiado largo")
-	@Column(name = "titulo")
-	private String descripcion;
+	@Column(name = "descripcion")
+	@Builder.Default
+	private String descripcion = "NO CONTIENE UNA DESCRIPCIÓN";
 	
 	@NotNull(message = "No puede estar vacío")
 	@Min(0)
@@ -68,7 +68,7 @@ public class Libro {
 	private String isbn;
 	
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne//(fetch = FetchType.LAZY)
 	@JoinColumn(name = "autor_id")
 	private Autor autor;
 

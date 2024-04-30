@@ -1,0 +1,84 @@
+package com.andoni980.webproject.presentacion.controladores;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.andoni980.webproject.entidades.Libro;
+import com.andoni980.webproject.servicios.AdminService;
+import com.andoni980.webproject.servicios.UsuarioService;
+
+import jakarta.validation.Valid;
+
+@Controller
+@RequestMapping("/")
+public class IndexController {
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@GetMapping
+	public String getAllLibros(Model modelo) {
+		modelo.addAttribute("libros", usuarioService.getAllLibros());
+		return "index";
+	}
+	
+	@GetMapping("/{id}")
+	public String getLibroById(@PathVariable("id") Long id, Model modelo) {
+		modelo.addAttribute("libro", usuarioService.getLibroById(id));
+		return "detalle-libro";
+	}
+	
+	@GetMapping("admin")
+	public String adminLibros(Libro libro, Model modelo) {
+		modelo.addAttribute("libros", usuarioService.getAllLibros());
+		modelo.addAttribute("autores", usuarioService.getAllAutores());
+		libro.setId(null);
+		return "admin";
+	}
+	
+	@PostMapping("admin")
+	public String saveLibro(@Valid Libro libro, Model modelo, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			modelo.addAttribute("libros", usuarioService.getAllLibros());
+			modelo.addAttribute("autores", usuarioService.getAllAutores());
+			return "admin";
+		}
+		
+		adminService.saveLibro(libro);
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/admin/{id}")
+	public String adminUpdateLibros(Model modelo, @PathVariable("id") Long id) {
+		modelo.addAttribute("libros", usuarioService.getAllLibros());
+		Libro libro = usuarioService.getLibroById(id);
+		modelo.addAttribute("libro", libro);
+		modelo.addAttribute("autores", usuarioService.getAllAutores());
+		return "admin";
+	}
+	
+	@PostMapping("admin/{id}")
+	public String adminLibroPost(@Valid Libro libro, BindingResult bindingResult, Model modelo, @PathVariable("id") Long id) {
+		modelo.addAttribute("autores", usuarioService.getAllAutores());
+		if(bindingResult.hasErrors()) {
+			modelo.addAttribute("libros", usuarioService.getAllLibros());
+			System.out.println(bindingResult.toString());
+			return "admin";
+		}
+		adminService.updateLibro(libro);
+		
+		return "redirect:/admin";
+	}
+
+}
