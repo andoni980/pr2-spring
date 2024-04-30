@@ -80,5 +80,13 @@ public class IndexController {
 		
 		return "redirect:/admin";
 	}
+	
+	// Autores
+	
+	@GetMapping("autores")
+	public String getAllAutores(Model modelo) {
+		modelo.addAttribute("autores", usuarioService.getAllAutores());
+		return "autores";
+	}
 
 }

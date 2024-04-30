@@ -8,6 +8,8 @@
 		<ul th:each="l: ${libros}">
 
 			<li th:text="${l.titulo + ': ' + l.precio}">Titulo: precio</li>
+			<p>Descripción</p>
+			<span th:text="${l.descripcion}">Descripcion</span><br>
 			<a th:href="@{/} + ${l.id}" href="detalle-libro.html">Detalle del Libro</a>
 
 		</ul>
