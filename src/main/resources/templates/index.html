@@ -9,8 +9,9 @@
 
 			<li th:text="${l.titulo + ': ' + l.precio}">Titulo: precio</li>
 			<p>Descripción</p>
-			<span th:text="${l.descripcion}">Descripcion</span><br>
-			<a th:href="@{/} + ${l.id}" href="detalle-libro.html">Detalle del Libro</a>
+			<p th:text="${l.descripcion}">Descripcion</p>
+			<p class="py-1" th:text="'ISBN: ' + ${l.isbn}"></p>
+			<a class="btn btn-primary mt-2" th:href="@{/} + ${l.id}" href="detalle-libro.html">Detalle del Libro</a>
 
 		</ul>
 	</main>

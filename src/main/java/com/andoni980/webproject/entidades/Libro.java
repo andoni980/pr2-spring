@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -38,15 +37,13 @@ public class Libro {
 	private Long id;
 	
 	@NotNull(message = "No puede estar vacío")
-	@NotBlank(message = "No puede estar vacío")
-	@Size(min=3,max=150,message="Demasiado corto o demasiado largo")
+	@Size(min=3,max=150)
 	@Column(name = "titulo")
 	private String titulo;
 	
 	@Lob
 	@NotNull(message = "No puede estar vacío")
-	@NotBlank(message = "No puede estar vacío")
-	@Size(min=3,max=3000,message="Demasiado corto o demasiado largo")
+	@Size(min=3,max=3000)
 	@Column(name = "descripcion")
 	@Builder.Default
 	private String descripcion = "NO CONTIENE UNA DESCRIPCIÓN";
@@ -56,9 +53,9 @@ public class Libro {
 	@Column(name = "precio")
 	private BigDecimal precio;
 	
-	@NotNull(message = "El descuento es un dato oblidatorio")
+	@NotNull(message = "El descuento es un dato obligatorio")
 	@Min(0)
-	@Max(0)
+	@Max(100)
 	@Column(name = "descuento")
 	@Builder.Default
 	private Integer descuento = 0;

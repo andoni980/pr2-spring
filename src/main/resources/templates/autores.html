@@ -7,7 +7,8 @@
 	<main>
 		<ul th:each="a: ${autores}">
 
-			<li th:text="${a.nombre + ': ' + a.apellidos}">Nombre Apellidos</li>
+			<li th:text="${a.nombre + ' ' + a.apellidos}">Nombre Apellidos</li>
+			<p>Libros del autor</p>
 			<ul th:each="l: ${a.libros}">
 				<li th:text="${l.titulo}"></li>
 			</ul>
