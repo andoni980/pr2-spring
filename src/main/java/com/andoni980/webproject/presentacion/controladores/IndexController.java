@@ -38,7 +38,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("admin")
-	public String adminLibros(Libro libro, Model modelo) {
+	public String adminLibro(Libro libro, Model modelo) {
 		modelo.addAttribute("libros", usuarioService.getAllLibros());
 		modelo.addAttribute("autores", usuarioService.getAllAutores());
 		libro.setId(null);
@@ -46,9 +46,11 @@ public class IndexController {
 	}
 	
 	@PostMapping("admin")
-	public String saveLibro(@Valid Libro libro, Model modelo, BindingResult bindingResult) {
+	public String adminSaveLibro(@Valid Libro libro, Model modelo, BindingResult bindingResult) {
 		
+		System.out.println("error");
 		if(bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getAllErrors());
 			modelo.addAttribute("libros", usuarioService.getAllLibros());
 //			modelo.addAttribute("autores", usuarioService.getAllAutores());
 			return "admin";
@@ -60,7 +62,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("admin/{id}")
-	public String adminUpdateLibros(Model modelo, @PathVariable("id") Long id) {
+	public String adminUpdateLibro(Model modelo, @PathVariable("id") Long id) {
 		modelo.addAttribute("libros", usuarioService.getAllLibros());
 		Libro libro = usuarioService.getLibroById(id);
 		modelo.addAttribute("libro", libro);
@@ -69,7 +71,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("admin/{id}")
-	public String updateLibro(@Valid Libro libro, BindingResult bindingResult, Model modelo, @PathVariable("id") Long id) {
+	public String updateLibro(@Valid Libro libro, BindingResult bindingResult, Model modelo) {
 		modelo.addAttribute("autores", usuarioService.getAllAutores());
 		if(bindingResult.hasErrors()) {
 			modelo.addAttribute("libros", usuarioService.getAllLibros());
@@ -86,7 +88,6 @@ public class IndexController {
 		return "redirect:/admin";
 	}
 	
-	// Autores
 	
 	@GetMapping("autores")
 	public String getAllAutores(Model modelo) {
