@@ -46,13 +46,12 @@ public class IndexController {
 	}
 	
 	@PostMapping("admin")
-	public String adminSaveLibro(@Valid Libro libro, Model modelo, BindingResult bindingResult) {
+	public String adminSaveLibro(@Valid Libro libro, BindingResult bindingResult, Model modelo) {
 		
-		System.out.println("error");
+		System.out.println(bindingResult.getAllErrors());
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
 			modelo.addAttribute("libros", usuarioService.getAllLibros());
-//			modelo.addAttribute("autores", usuarioService.getAllAutores());
+			modelo.addAttribute("autores", usuarioService.getAllAutores());
 			return "admin";
 		}
 		
@@ -72,6 +71,7 @@ public class IndexController {
 	
 	@PostMapping("admin/{id}")
 	public String updateLibro(@Valid Libro libro, BindingResult bindingResult, Model modelo) {
+		
 		modelo.addAttribute("autores", usuarioService.getAllAutores());
 		if(bindingResult.hasErrors()) {
 			modelo.addAttribute("libros", usuarioService.getAllLibros());

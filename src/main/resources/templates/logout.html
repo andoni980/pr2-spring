@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
 <title>Cierre sesión</title>
-<main>
-	<form th:action="@{/logout}" method="post">
-		<button>Cierre de sesión</button>
+<main class="">
+
+
+	<h2 class="h2 d-flex justify-content-center my-5">¿Quieres cerrar la sesión?</h2>
+	<form class="d-flex justify-content-center my-5" th:action="@{/logout}" method="post">
+		<button class="btn btn-primary">Cierre de sesión</button>
 	</form>
 </main>
 </html>

@@ -1,19 +1,48 @@
 <!DOCTYPE html>
-<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
 
-	<meta charset="UTF-8">
-	<title>Página Principal</title>
+<meta charset="UTF-8">
+<title>Página Principal</title>
 
-	<main>
-		<ul th:each="l: ${libros}">
+<main class="container mt-5">
+	<!-- 		<ul th:each="l: ${libros}">
 
 			<li th:text="${l.titulo + ': ' + l.precio}">Titulo: precio</li>
 			<p>Descripción</p>
 			<p th:text="${l.descripcion}">Descripcion</p>
-			<p class="py-1" th:text="'ISBN: ' + ${l.isbn}"></p>
-			<a class="btn btn-primary mt-2" th:href="@{/} + ${l.id}" href="detalle-libro.html">Detalle del Libro</a>
 
-		</ul>
-	</main>
+		</ul> -->
+	<h2 class="h2 fw-semibold mb-4">Libros</h2>
+	<div
+		class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-4">
+		<div th:each="libro: ${libros}" class="col">
+			<div class="card h-100">
+				<img th:src="${'https://picsum.photos/300/200?' + libro.id}"
+					class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 th:text="${libro.titulo}"
+						class="card-title text-center fw-bold mb-3">Card title</h5>
+
+					<dl class="row list-group list-group-flush">
+						<dt class="col-6 ">Titulo</dt>
+						<dd class="col list-group-item" th:text="${libro.titulo}"></dd>
+						<dt class="col-6">Descripción</dt>
+						<dd class="col list-group-item" th:text="${libro.descripcion}"></dd>
+						<dt class="col-6">ISBN</dt>
+						<dd class="col list-group-item" th:text="${libro.isbn}"></dd>
+						<dt class="col-6">Precio</dt>
+						<dd class="col list-group-item" th:text="${libro.precio} + ' €'"></dd>
+					</dl>
+
+				</div>
+				<div class="card-footer d-flex justify-content-around">
+					<a class="btn btn-primary mt-2" th:href="@{/} + ${libro.id}"
+						href="detalle-libro.html">Detalle del Libro</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
 
 </html>
