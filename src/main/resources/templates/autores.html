@@ -1,19 +1,48 @@
 <!DOCTYPE html>
-<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
 
-	<meta charset="UTF-8">
-	<title>Autores</title>
+<meta charset="UTF-8">
+<title>Autores</title>
 
-	<main>
-		<ul th:each="a: ${autores}">
+<main class="container">
 
-			<li th:text="${a.nombre + ' ' + a.apellidos}">Nombre Apellidos</li>
-			<p>Libros del autor</p>
-			<ul th:each="l: ${a.libros}">
-				<li th:text="${l.titulo}"></li>
-			</ul>
+	<h2 class="h2 m-5 fw-semibold text-center fs-1 text-primary">Autores</h2>
 
-		</ul>
-	</main>
+	<div th:each="a : ${autores}" class="list-group container"
+		style="max-width: 50%;">
+		<img src="..." class="img-fluid rounded-start" alt="..."
+			th:src="${'https://picsum.photos/300/200?' + a.id}">
+		<p
+			class="bg-light fw-semibold  list-group-item d-flex justify-content-center align-items-start mb-2 mt-4"
+			th:text="${a.nombre + ' ' + a.apellidos}">Nombre: apellidos</p>
+		<p class="bg-light fw-semibold list-group-item text-center"
+			th:text="${a.email}"></p>
+
+		<p class="d-inline-flex gap-1 d-flex justify-content-center">
+			<a class="btn btn-primary" data-bs-toggle="collapse"
+				th:href="${'#id' + a.id}" role="button" aria-expanded="false"
+				aria-controls="${a.id}">Libros del Autor</a>
+		</p>
+
+		<div class="collapse mb-5" th:id="${'id' + a.id}">
+			<div class="card card-body">
+				<ul class="list-group list-group-flush" th:each="l : ${a.libros}">
+					<li class="list-group-item" th:text="${'Título: ' + l.titulo + ', ' + 'Precio: ' + ' ' + l.precio + '€'}">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Nombre: precio</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	<hr class="border border-secondary border-4 opacity-75 my-5">
+	</div>
+
+
+
+
+</main>
 
 </html>

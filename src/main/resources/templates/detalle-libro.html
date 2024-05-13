@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
 
 <meta charset="UTF-8">
 <title>Detalle de Libro</title>
 
-<main>
-
+<main class="container">
+	<!-- 
 	<p th:text="'Titulo: ' + ${libro.titulo}">Titulo</p>
 	<p th:text="'Precio: ' + ${libro.precio}">Precio</p>
 	<p th:text="'Autor: ' + ${libro.autor.nombre}">Autor</p>
-	<p th:text="'ISBN: ' + ${libro.isbn}">ISBN</p>
+	<p th:text="'ISBN: ' + ${libro.isbn}">ISBN</p> -->
+
+
+	<h4 class="h4 text-secondary mt-4">Libro</h4>
+	<div class="card mb-5 mt-3">
+		<div class="row g-0">
+			<div class="col-md-4">
+				<img src="..." class="img-fluid rounded-start" alt="..."
+					th:src="${'https://picsum.photos/300/200?' + libro.id}">
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 th:text="${libro.titulo}" class="card-title text-primary fw-semibold fs-4">Titulo</h5>
+					<p th:text="${'Descripción: ' + libro.descripcion}"
+						class="card-text text-primary">Descripción</p>
+					<p th:text="${'Precio: ' + libro.precio} + ' €'" class="card-text">
+						<small class="text-body-secondary fw-semibold">Precio</small>
+					</p>
+					<p th:text="${'ISBN: ' + libro.isbn}" class="card-text">
+						<small class="text-body-secondary">ISBN</small>
+					</p>
+					<p
+						th:text="${'Autor: ' + libro.autor.nombre + ' ' + libro.autor.apellidos}"
+						class="card-text">
+						<small class="text-body-secondary">Autor</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </main>
 
