@@ -71,7 +71,7 @@
 
 	<nav class="navbar bg-primary shadow  border-body navbar-expand-md mb-3 sticky-top" data-bs-theme="dark">
 		<div class="container-fluid d-flex align-items-baseline">
-			<a class="navbar-brand ms-4 me-5 ps-4 fw-bold fs-2" href="#">LiBRoS</a>
+			<a class="navbar-brand ms-4 me-5 ps-4 fw-bold fs-2" href="#">LiBRoS<i class="bi bi-book ms-3 fw-3"></i></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -86,7 +86,7 @@
 				</ul>
 				<ul class="navbar-nav d-flex align-items-baseline">
 					<li class="nav-item me-4"><a class="nav-link text-white fs-4" th:href="@{/admin}" href="admin.html"
-							sec:authorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+							sec:authorize="hasRole('ROLE_ADMIN')"><i class="bi bi-gear-fill me-3"></i>Admin</a></li>
 					<div class="vr me-3" sec:authorize="isAuthenticated()"></div>
 					<li class="nav-link text-white fs-5" sec:authorize="isAuthenticated()" sec:authentication="name">Usuario
 					</li>
