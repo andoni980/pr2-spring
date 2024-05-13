@@ -1,46 +1,45 @@
 <!DOCTYPE html>
-<html th:fragment="plantilla(titulo, contenido)"
-	xmlns:th="http://www.thymeleaf.org"
+<html th:fragment="plantilla(titulo, contenido)" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
-<base th:href="@{/}">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title th:replace="${titulo}">TITULO</title>
+	<base th:href="@{/}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:replace="${titulo}">TITULO</title>
 
-<link rel="stylesheet" href="css/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="css/bootstrap-icons.min.css">
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script defer src="js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script defer src="js/bootstrap.bundle.min.js"></script>
 
-<script defer src="js/jquery-3.7.1.min.js"></script>
+	<script defer src="js/jquery-3.7.1.min.js"></script>
 
-<link rel="stylesheet" href="css/dataTables.bootstrap5.css">
-<script defer src="js/dataTables.js"></script>
-<script defer src="js/dataTables.bootstrap5.js"></script>
+	<link rel="stylesheet" href="css/dataTables.bootstrap5.css">
+	<script defer src="js/dataTables.js"></script>
+	<script defer src="js/dataTables.bootstrap5.js"></script>
 
-<script defer src="js/dataTable-function.js"></script>
+	<script defer src="js/dataTable-function.js"></script>
 </head>
 
-<body>
+<body style="background-image: url('/img/papel2.jpg');">
 
 
-	<nav class="navbar navbar-expand-lg bg-primary sticky-top" data-bs-theme="dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Libros</a>
+	<!--	<nav class="navbar navbar-expand-md bg-primary sticky-top" data-bs-theme="dark">
+		<div class="container-fluid d-flex align-items-baseline">
+			<a class="navbar-brand ms-4 me-5 fw-bold fs-2" href="#">Libros</a>
 			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse d-flex justify-content-between"
+			<div class="collapse d-flex justify-content-between align-items-baseline navbar-collapse"
 				id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link text-white"
+					<li class="nav-item"><a class="nav-link fs-4 fw-semibold text-white"
 						aria-current="page" th:href="@{/}" href="index.html">Principal</a></li>
-					<li class="nav-item"><a class="nav-link text-white"
+					<li class="nav-item"><a class="nav-link fs-4 fw-semibold ms-4 text-white"
 						th:href="@{/autores}" href="autores.html">Autores</a></li>
 
 
@@ -60,10 +59,48 @@
 						</form>
 					<li class="nav-item" sec:authorize="isAuthenticated()"><a
 						th:href="@{/logout}"
-						class="link-underline fw-semibold link-underline-opacity-0 px-2 pb-1 rounded bg-secondary border-dark text-white  ms-4">Cerrar
+						class="link-underline fw-semibold fs-6 link-underline-opacity-0 px-2 pt-1 pb-1 rounded bg-secondary border border-4 border-tertiary text-white  ms-4">Cerrar
 							sesión</a></li>
 
 				</ul>
+			</div>
+		</div>
+	</nav>-->
+
+
+
+	<nav class="navbar bg-primary shadow  border-body navbar-expand-md mb-3 sticky-top" data-bs-theme="dark">
+		<div class="container-fluid d-flex align-items-baseline">
+			<a class="navbar-brand ms-4 me-5 ps-4 fw-bold fs-2" href="#">LiBRoS</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<li class="nav-item"><a class="nav-link text-light mx-4 fs-4 fw-semibold"
+							th:href="@{/}">Principal</a></li>
+					<li class="nav-item"><a class="nav-link text-light  ms-3 fs-4 fw-semibold"
+							th:href="@{/autores}">Autores</a></li>
+				</ul>
+				<ul class="navbar-nav d-flex align-items-baseline">
+					<li class="nav-item me-4"><a class="nav-link text-white fs-4" th:href="@{/admin}" href="admin.html"
+							sec:authorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+					<div class="vr me-3" sec:authorize="isAuthenticated()"></div>
+					<li class="nav-link text-white fs-5" sec:authorize="isAuthenticated()" sec:authentication="name">Usuario
+					</li>
+					<li class="nav-item" sec:authorize="!isAuthenticated()">
+						<form th:action="@{/login}" method="post">
+							<button class="px-2 pb-1 rounded bg-secondary border-dark text-white fs-5 ms-4">Inicio
+								de sesión</button>
+						</form>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}"
+							class="link-underline fw-semibold fs-5 link-underline-opacity-0 px-3 py-1 rounded bg-secondary border border-4 border-tertiary text-white mx-3 d-flex justify-content-baseline">Cerrar
+							sesión</a></li>
+
+				</ul>
+
 			</div>
 		</div>
 	</nav>
@@ -72,18 +109,13 @@
 
 	<div th:replace="${contenido}">CONTENIDO</div>
 
-	<footer
-		class="sticky-bottom text-bg-primary p-2 text-center d-flex flex-column flex-sm-row justify-content-between mt-4">
-		<p>&copy;2024 Awanbabuluba</p>
+	<footer class="text-bg-primary p-2 text-center fs-4 d-flex flex-sm-row justify-content-between mt-4">
+		<p class="ms-5">&copy;2024 Awanbabuluba</p>
 		<ul class="list-unstyled d-flex justify-content-around">
-			<li class="px-2"><a href="#"><i
-					class="text-white bi bi-facebook"></i></a></li>
-			<li class="px-2"><a href="#"><i
-					class="text-white bi bi-twitter-x"></i></a></li>
-			<li class="px-2"><a href="#"><i
-					class="text-white bi bi-instagram"></i></a></li>
-			<li class="px-2"><a href="#"><i
-					class="text-white bi bi-tiktok"></i></a></li>
+			<li class="px-4"><a class=" mx-3" href="#"><i class="text-white bi bi-facebook"></i></a></li>
+			<li class="px-4"><a class=" mx-3" href="#"><i class="text-white bi bi-twitter-x"></i></a></li>
+			<li class="px-4"><a class=" mx-3" href="#"><i class="text-white bi bi-instagram"></i></a></li>
+			<li class="px-4"><a class=" mx-3" href="#"><i class="text-white bi bi-tiktok"></i></a></li>
 		</ul>
 	</footer>
 
